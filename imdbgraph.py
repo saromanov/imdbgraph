@@ -34,11 +34,15 @@ class IMDBGraph:
             self._add_node(person.name, "actor")
             self._graph.add_edge(movie.title, person.name)
 
-    def addPopular(self):
+    def addPopular(self, limit=10):
         ''' Add popular movies and shows
         '''
         shows = self._imdb.popular_shows()
-        movies = self._imdb.top_250()
+        #movies = self._imdb.top_250()
+        if limit > len(shows):
+            limit = len(shows)
+        for show in shows[:limit]:
+            self.addMovie(show['tconst'])
 
     def save(self, outpath):
         ''' save graph to the file
