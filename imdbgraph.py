@@ -29,7 +29,7 @@ class IMDBGraph:
             self._graph.add_edge(movie.title, genre)
         for person in movie.credits:
             self._add_node(person.name, 'actor')
-            self._graph.add_edge(movie.title, person.name)
+            self._graph.add_edge(movie.title, person.name, weight=movie.rating + movie.votes)
         for person in movie.cast_summary:
             self._add_node(person.name, "actor")
             self._graph.add_edge(movie.title, person.name)
