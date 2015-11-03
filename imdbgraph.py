@@ -7,11 +7,11 @@ class IMDBGraph:
         self._imdb = Imdb(anonymize=anonymize, cache=True)
         self._graph = nx.Graph()
 
-    def _add_node(self, name):
+    def _add_node(self, name, nodetype):
         ''' Add simple node without attributes
         '''
         if name not in self._graph.nodes():
-            self._graph.add_node(name)
+            self._graph.add_node(name, nodetype=nodetype)
 
     def addPerson(self, idname):
         ''' add New actor/actress no the graph
@@ -21,11 +21,18 @@ class IMDBGraph:
 
     def addMovie(self, idname):
         movie = self._imdb.get_title_by_id(idname)
-        self._add_node(movie.title)
-        self._add_node(movie.year)
+        self._add_node(movie.title, 'movie')
+        self._add_node(movie.year, 'year')
+        print(movie.tagline, movie.rating,  movie.cast_summary)
         for genre in movie.genres:
-            self._add_node(genre)
+            self._add_node(genre, 'genre')
             self._graph.add_edge(movie.title, genre)
+        for person in movie.credits:
+            self._add_node(person.name, 'actor')
+            self._graph.add_edge(movie.title, person.name)
+        for person in movie.cast_summary:
+            self._add_node(person.name, "actor")
+            self._graph.add_edge(movie.title, person.name)
 
     def addPopular(self):
         ''' Add popular movies and shows
