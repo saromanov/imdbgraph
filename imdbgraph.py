@@ -1,6 +1,8 @@
 from imdbpie import Imdb
 import networkx as nx
+import logging
 
+logging.basicConfig(level = logging.INFO)
 
 class IMDBGraph:
     def __init__(self, anonymize=True):
@@ -23,7 +25,7 @@ class IMDBGraph:
         movie = self._imdb.get_title_by_id(idname)
         self._add_node(movie.title, 'movie')
         self._add_node(movie.year, 'year')
-        print(movie.tagline, movie.rating,  movie.cast_summary)
+        logging.info("Loading {0}".format(idname))
         for genre in movie.genres:
             self._add_node(genre, 'genre')
             self._graph.add_edge(movie.title, genre)
