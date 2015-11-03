@@ -46,6 +46,13 @@ class IMDBGraph:
         for show in shows[:limit]:
             self.addMovie(show['tconst'])
 
+    def components(self):
+        comp = nx.connected_components(self._graph)
+        degree = nx.degree(self._graph)
+        print(nx.is_connected(self._graph))
+        print(nx.k_components(self._graph))
+        #print(nx.clustering(self._graph))
+
     def save(self, outpath):
         ''' save graph to the file
         '''
