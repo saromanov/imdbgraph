@@ -59,6 +59,9 @@ class IMDBGraph:
         '''
         return nx.average_neighbor_degree(self._graph)
 
+    def avg_degree_connectivity(self):
+        return nx.average_degree_connectivity(self._graph)
+
     def save(self, outpath):
         ''' save graph to the file
         '''
