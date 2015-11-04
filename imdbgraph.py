@@ -36,7 +36,7 @@ class IMDBGraph:
             self._add_node(person.name, "actor")
             self._graph.add_edge(movie.title, person.name)
 
-    def addPopular(self, limit=10):
+    def addPopular(self, limit=2):
         ''' Add popular movies and shows
         '''
         shows = self._imdb.popular_shows()
@@ -50,8 +50,14 @@ class IMDBGraph:
         comp = nx.connected_components(self._graph)
         degree = nx.degree(self._graph)
         print(nx.is_connected(self._graph))
-        print(nx.k_components(self._graph))
+        print(nx.stoer_wagner(self._graph))
+        #print(nx.k_components(self._graph))
         #print(nx.clustering(self._graph))
+
+    def avg_degree(self):
+        ''' Return average number of degree for each node
+        '''
+        return nx.average_neighbor_degree(self._graph)
 
     def save(self, outpath):
         ''' save graph to the file
