@@ -62,6 +62,11 @@ class IMDBGraph:
     def avg_degree_connectivity(self):
         return nx.average_degree_connectivity(self._graph)
 
+    def clustering(self):
+        ''' Compute a bipartite clustering coefficient for nodes.
+        '''
+        return nx.clustering(self._graph)
+
     def save(self, outpath):
         ''' save graph to the file
         '''
