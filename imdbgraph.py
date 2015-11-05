@@ -46,6 +46,13 @@ class IMDBGraph:
         for show in shows[:limit]:
             self.addMovie(show['tconst'])
 
+    def addEdge(self, innode, outnode, prop=None):
+        if innode not in self._graph:
+            raise Exception("{0} not in graph".format(innode))
+        if outnode not in self._graph:
+            raise Exception("{0} not in graph".format(outnode))
+        self._graph.add_edge(innode,outnode, prop=prop)
+
     def components(self):
         comp = nx.connected_components(self._graph)
         degree = nx.degree(self._graph)
