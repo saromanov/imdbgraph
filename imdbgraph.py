@@ -72,6 +72,11 @@ class IMDBGraph:
         '''
         return self._graph[item]
 
+    def cliques(self):
+        ''' return all cluques from the graph
+        '''
+        return nx.find_cliques(self._graph)
+
     def save(self, outpath):
         ''' save graph to the file
         '''
