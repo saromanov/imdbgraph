@@ -67,6 +67,11 @@ class IMDBGraph:
         '''
         return nx.clustering(self._graph)
 
+    def get_item(self, item):
+        ''' Getting node from the graph
+        '''
+        return self._graph[item]
+
     def save(self, outpath):
         ''' save graph to the file
         '''
