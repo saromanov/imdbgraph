@@ -13,7 +13,7 @@ class IMDBGraph:
         ''' Add simple node without attributes
         '''
         if name not in self._graph.nodes():
-            self._graph.add_node(name, nodetype=nodetype)
+            self._graph.add_node(name, node=nodetype)
 
     def addPerson(self, idname):
         ''' add New actor/actress no the graph
@@ -31,7 +31,7 @@ class IMDBGraph:
             self._graph.add_edge(movie.title, genre)
         for person in movie.credits:
             self._add_node(person.name, 'actor')
-            self._graph.add_edge(movie.title, person.name, weight=movie.rating + movie.votes)
+            self._graph.add_edge(movie.title, person.name, weight=movie.rating + movie.votes, rating=movie.rating, votes=movie.votes)
         for person in movie.cast_summary:
             self._add_node(person.name, "actor")
             self._graph.add_edge(movie.title, person.name)
