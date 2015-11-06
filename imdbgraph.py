@@ -83,6 +83,11 @@ class IMDBGraph:
         '''
         return nx.find_cliques(self._graph)
 
+    def stat(self):
+        ''' Return basic statistics of the graph
+        '''
+        return {'nodes': self._graph.number_of_nodes(), 'edges': self._graph_number_of_edges()}
+
     def save(self, outpath):
         ''' save graph to the file
         '''
