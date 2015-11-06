@@ -56,10 +56,6 @@ class IMDBGraph:
     def components(self):
         comp = nx.connected_components(self._graph)
         degree = nx.degree(self._graph)
-        print(nx.is_connected(self._graph))
-        print(nx.stoer_wagner(self._graph))
-        #print(nx.k_components(self._graph))
-        #print(nx.clustering(self._graph))
 
     def avg_degree(self):
         ''' Return average number of degree for each node
