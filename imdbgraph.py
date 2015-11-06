@@ -46,6 +46,9 @@ class IMDBGraph:
         for show in shows[:limit]:
             self.addMovie(show['tconst'])
 
+    def removeNode(self, nodename):
+        self._graph.remove_node(nodename)
+
     def addEdge(self, innode, outnode, prop=None):
         if innode not in self._graph:
             raise Exception("{0} not in graph".format(innode))
