@@ -78,6 +78,13 @@ class IMDBGraph:
         '''
         return self._graph.node[item]
 
+    def filter_edges(self, param, func):
+        for n, nbrs in self._graph.adjacency_iter():
+            for nbr, attr in nbrs.items():
+                print(attr)
+                data = attr[param]
+                if func(data): yield (n, nbr, data)
+
     def cliques(self):
         ''' return all cluques from the graph
         '''
