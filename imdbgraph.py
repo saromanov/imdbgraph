@@ -24,6 +24,11 @@ class IMDBGraph:
     def addMovie(self, idname):
         movie = self._imdb.get_title_by_id(idname)
         self._add_node(movie.title, 'movie')
+        logging.info("Loading {0}".format(idname))
+
+    def addMovieAndConnect(self, idname):
+        movie = self._imdb.get_title_by_id(idname)
+        self._add_node(movie.title, 'movie')
         self._add_node(movie.year, 'year')
         logging.info("Loading {0}".format(idname))
         for genre in movie.genres:
