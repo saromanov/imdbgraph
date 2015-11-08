@@ -86,7 +86,7 @@ class IMDBGraph:
     def stat(self):
         ''' Return basic statistics of the graph
         '''
-        return {'nodes': self._graph.number_of_nodes(), 'edges': self._graph_number_of_edges()}
+        return {'nodes': self._graph.number_of_nodes(), 'edges': self._graph.number_of_edges(), 'density': nx.density(self._graph)}
 
     def save(self, outpath):
         ''' save graph to the file
