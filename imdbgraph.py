@@ -81,7 +81,7 @@ class IMDBGraph:
     def filter_edges(self, param, func):
         for n, nbrs in self._graph.adjacency_iter():
             for nbr, attr in nbrs.items():
-                print(attr)
+                if len(attr) == 0 or param not in attr: continue
                 data = attr[param]
                 if func(data): yield (n, nbr, data)
 
