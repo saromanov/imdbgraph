@@ -76,7 +76,7 @@ class IMDBGraph:
     def get_item(self, item):
         ''' Getting node from the graph
         '''
-        return self._graph[item]
+        return self._graph.node[item]
 
     def cliques(self):
         ''' return all cluques from the graph
